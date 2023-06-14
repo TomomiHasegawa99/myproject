@@ -9,7 +9,7 @@
 <body>
 
 <!-- タイトル -->
-<h1>購入管理くん</h1>
+<h1><a href="index.html">購入管理くん</a></h1>
 
 <hr>
 
@@ -22,13 +22,16 @@
         どの購入リストをご利用ですか？
     </div>
     <select name='ListS' id='List_a'>
-        <option hidden>--リストを選択--</option>
+        <option value='-1' hidden>--リストを選択--</option>
         <option value='1'>本</option>
         <option value='2'>食材</option>
     </select>
 
     <!--決定ボタン-->
     <button id='select_btn' type='button' class='btn_s'>決定</button>
+	
+    <p id='error_Msg' style='color:red;''></p>
+
 </p>
 
 
@@ -52,18 +55,25 @@
     let selectList;
     let selectBtn;
     document.addEventListener('DOMContentLoaded', () => {
-	    selectList = document.getElementById('List_a');
+	selectList = document.getElementById('List_a');
         selectBtn = document.getElementById('select_btn');
 
         selectBtn.addEventListener('click', (event) => {
-        const lists = selectList.value;
+            const lists = selectList.value;
+        
+            if(lists == '-1'){
+            
+                var Msg = '選択後、送信を行ってください。';
+                document.getElementById('error_Msg').innerHTML = Msg;
+                
+            }else{				  
 
-        //コンソールテスト用
-        //console.log('./list.html?ListS=' + lists);
+                //コンソールテスト用
+                //console.log('./list.html?ListS=' + lists);
 
-        //URL作成→ページ移動
-        location.href = './list.html?ListS=' + lists ;
-
+                //URL作成→ページ移動
+                location.href = './list.html?ListS=' + lists ;
+            }						
         })
     });
 
