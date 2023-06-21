@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='ja'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>購入管理くん</title>
+</head>
+
+<body>
+
+    <!-- タイトル -->
+    <h1>
+        <a href="index.html">購入管理くん</a>
+    </h1>
+    
+    <hr>
+    
+    
+    <p>
+        <!--パラメータの取得-->
+        リスト名：<span id="url_check"></span>
+
+    </p>
+
+
+    <script>
+        var url = location.search;
+        var listname;
+        if(url == "?ListS=1"){
+            listname = "本";
+        }
+        else{
+            listname = "食品";
+        }
+        document.getElementById("url_check").innerHTML = listname;
+        
+    
+    </script>   
+</body>
+</html>
