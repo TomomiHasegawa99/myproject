@@ -26,13 +26,61 @@
     <script>
         var url = location.search;
         var listname;
+        var tasks = {
+            dbName: null,
+            dbVer: 1,
+            db:null
+        };
+        
         if(url == "?ListS=1"){
             listname = "本";
+            tasks.dbName = "BookDB";
         }
         else{
             listname = "食品";
+            tasks.dbName = "FoodDB";
         }
+        
         document.getElementById("url_check").innerHTML = listname;
+
+        tasks.init=function(){
+        //DBに接続。なければ新規作成。
+        var openReq = indexedDB.open(tasks.dbName,tasks.dbVer);
+        openReq.onupgradeneeded = function(event){
+            var db = event.target.result;
+            db.onerror = function(event){
+                alert('DB作成に失敗しました');
+            }
+            var objectStore = db.createObjectStore("task", { keyPath: "ID", autoIncrement: true }); 
+            if(tasks.dbName == 'BookDB'){
+                objectStore.createIndex("TITLE", "TITLE", { unique: false });
+                objectStore.createIndex("AUTHER", "AUTHER", { unique: false });
+                objectStore.createIndex("BUY_DATE", "BUY_DATE", { unique: false });
+                objectStore.createIndex("SYUPAN", "SYUPAN", { unique: false });
+                objectStore.createIndex("JIKAI_DATE", "JIKAI_DATE", { unique: false });
+                objectStore.createIndex("BIKO", "BIKO", { unique: false });
+                objectStore.createIndex("INSERT_DATE", "INSERT_DATE", { unique: false });
+                objectStore.createIndex("UODATE_DATE", "UPDATE_DATE", { unique: false });
+            }
+            if(tasks.dbName == 'FoodDB'){
+                objectStore.createIndex("NAME", "NAME", { unique: false });
+                objectStore.createIndex("BUY_DATE", "BUY_DATE", { unique: false });
+                objectStore.createIndex("NUMBER", "NUMBER", { unique: false });
+                objectStore.createIndex("KIGEN", "KIGEN", { unique: false });
+                objectStore.createIndex("PRICE", "PRICE", { unique: false });
+                objectStore.createIndex("BIKO", "BIKO", { unique: false });
+                objectStore.createIndex("INSERT_DATE", "INSERT_DATE", { unique: false });
+                objectStore.createIndex("UODATE_DATE", "UPDATE_DATE", { unique: false });
+            }
+            alert("DBを作成しましたので、ページを更新します。");
+            location.reload(); //作成した後、ページを更新する必要があります。
+        }
+    }
+
+    //立ち上げ時にDB接続を行う。
+    (function(){
+        tasks.init();
+    })();
         
     
     </script>   
