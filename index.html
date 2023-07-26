@@ -73,6 +73,14 @@
 
                 //URL作成→ページ移動
                 location.href = './list.html?ListS=' + lists ;
+//                location.href = './list.html?ListS=' + lists ;
+                    let i = 0;
+                    i = Number(lists);
+
+					 console.log(i);
+//					 location.href = './index' + i + '.php';
+                     location.href = './list' + i + '.php';
+
             }						
         })
     });
