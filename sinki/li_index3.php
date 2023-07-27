@@ -48,6 +48,11 @@
         $error[] = "「名称」は必ず入力してください。";
       } 
 
+       // 価格のバリデーション
+      if( !preg_match( '/\A[0-9]{0,5}\z/', $data['n_price']) ) {
+        $error[] = "「価格」は半角数字で入力してください。";
+      } 
+
       return $error;
     }
 ?>
@@ -219,7 +224,6 @@
     <!-- 確認ページ内容 -->
 <?php if( $page_flag === 1 ): ?>
   
-
   <form method="post" action="">
    <div class="k_new">
     <div class="element_wrap">
@@ -229,6 +233,14 @@
     <div class="element_wrap">
       <label>購入日</label>
       <p><?php echo $clean['buy_d']; ?></p>
+    </div>
+    <div class="element_wrap">
+      <label>賞味・消費期限</label>
+      <p><?php echo $clean['kigen_d']; ?></p>
+    </div>
+    <div class="element_wrap">
+      <label>価格</label>
+      <p><?php echo $clean['n_price']; ?></p>
     </div>
     <div class="element_wrap">
       <label>個数</label>
@@ -249,10 +261,6 @@
       </p>
     </div>
     <div class="element_wrap">
-      <label>賞味・消費期限</label>
-      <p><?php echo $clean['kigen_d']; ?></p>
-    </div>
-    <div class="element_wrap">
       <label>備考欄</label>
       <p><?php echo nl2br($clean['n_biko']); ?></p>
     </div>
@@ -262,8 +270,9 @@
     <input type="submit" name="btn_submit" value="登録">
     <input type="hidden" name="n_name" value="<?php echo $_POST['n_name']; ?>">
     <input type="hidden" name="buy_d" value="<?php echo $_POST['buy_d']; ?>">
-    <input type="hidden" name="n_number" value="<?php echo $_POST['n_number']; ?>">
     <input type="hidden" name="kigen_d" value="<?php echo $_POST['kigen_d']; ?>">
+    <input type="hidden" name="n_price" value="<?php echo $_POST['n_price']; ?>">
+    <input type="hidden" name="n_number" value="<?php echo $_POST['n_number']; ?>">
     <input type="hidden" name="n_biko" value="<?php echo $_POST['n_biko']; ?>">
    </div>
   </form>
@@ -297,15 +306,23 @@
       <div class="input_new">
         <div class="i_new">
           <br>
-        <div>
+          <div>
           <label>名称</label> <!-- new_name -->
           <input type="text" id="i_tx" name="n_name" required minlength="1" maxlength="100" value="<?php if( !empty($clean['n_name']) ){ echo $clean['n_name']; } ?>">
         </div>
         <div>
           <label>購入日</label> <!-- buy_date -->
-          
           <!-- インプット版 -->
             <input type="date" id="i_date" name="buy_d" min="1945-01-01" max="2050-12-31" value="<?php  if( !empty($_POST['buy_d']) ){ echo $_POST['buy_d']; } ?>">
+        </div>
+        <div>
+          <label>賞味・消費期限</label> <!-- kigen_date -->
+          <!-- インプット版 -->
+            <input type="date" id="i_date" name="kigen_d" min="1945-01-01" max="2060-12-31" value="<?php if( !empty($_POST['kigen_d']) ){ echo $_POST['kigen_d']; } ?>">
+        </div>
+        <div>
+          <label>価格</label> <!-- new_price -->
+          <input type="text" id="n_price" name="n_price"  maxlength="5" value="<?php if( !empty($clean['n_price']) ){ echo $clean['n_price']; } ?>">
         </div>
         <div>
           <label>個数</label> <!-- new_number -->
@@ -324,11 +341,6 @@
             <option value="10" <?php if( !empty($_POST['n_number']) && $_POST['n_number'] === "11" ){ echo 'selected'; } ?>>11</option>
             <option value="10" <?php if( !empty($_POST['n_number']) && $_POST['n_number'] === "12" ){ echo 'selected'; } ?>>12</option>
           </select>
-        </div>
-        <div>
-          <label>賞味・消費期限</label> <!-- kigen_date -->
-          <!-- インプット版 -->
-            <input type="date" id="i_date" name="kigen_d" min="1945-01-01" max="2060-12-31" value="<?php if( !empty($_POST['kigen_d']) ){ echo $_POST['kigen_d']; } ?>">
         </div>
         <div>
           <label>備考欄</label> <!-- new_biko -->
