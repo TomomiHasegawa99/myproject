@@ -234,7 +234,7 @@
       <p><?php echo $clean['n_shupan']; ?></p>
     </div>
     <div class="element_wrap">
-      <label>次巻発売日</label>
+      <label>次回発売日</label>
       <p><?php echo $clean['jikai_d']; ?></p>
     </div>
     <div class="element_wrap">
@@ -301,7 +301,7 @@
           <input type="text" id="i_tx" name="n_shupan"  maxlength="100" value="<?php if( !empty($clean['n_shupan']) ){ echo $clean['n_shupan']; } ?>">
         </div>
         <div>
-          <label>次巻発売日</label> <!-- jikai_date -->
+          <label>次回発売日</label> <!-- jikai_date -->
           <!-- インプット版 -->
             <input type="date" id="i_date" name="jikai_d" min="1945-01-01" max="2060-12-31" value="<?php if( !empty($_POST['jikai_d']) ){ echo $_POST['jikai_d']; } ?>">
 
