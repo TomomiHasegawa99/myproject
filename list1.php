@@ -21,6 +21,8 @@ $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
 
 // 結果を出力
 //var_dump($result);
+//改行
+echo '<br>';
 
 //改行
 echo '<br>';
@@ -28,14 +30,22 @@ echo '<br>';
 $title = array_column($result, 'TITLE');
 // 取り出したカラムの配列を表示
 echo 'タイトル　';
-print_r($title);
+
+foreach($title as $value){
+    echo $value;
+    echo '｜';
+}
+
 //改行
 echo '<br>';
 // $result　からAUTHERに該当するカラムのみを取り出す
 $auther = array_column($result, 'AUTHER');
 // 取り出したカラムの配列を表示
 echo '作者　';
-print_r($auther);
+foreach($auther as $value){
+    echo $value;
+    echo '｜';
+}
 
 //改行
 echo '<br>';
@@ -43,7 +53,10 @@ echo '<br>';
 $buy_date = array_column($result, 'BUY_DATE');
 // 取り出したカラムの配列を表示
 echo '購入日　';
-print_r($buy_date);
+foreach($buy_date as $value){
+    echo $value;
+    echo '｜';
+}
 
 //改行
 echo '<br>';
@@ -52,21 +65,32 @@ echo '<br>';
 $syupan = array_column($result, 'SYUPAN');
 // 取り出したカラムの配列を表示
 echo '出版社　';
-print_r($syupan);
+// 取り出したカラムの配列を表示
+
+foreach($syupan as $value){
+    echo $value;
+    echo '｜';
+}
 //改行
 echo '<br>';
 // $result　からJIKAI_DATEに該当するカラムのみを取り出す
 $jikai_date = array_column($result, 'JIKAI_DATE');
 // 取り出したカラムの配列を表示
 echo '次回発売日　';
-print_r($jikai_date);
+foreach($jikai_date as $value){
+    echo $value;
+    echo '｜';
+}
 //改行
 echo '<br>';
 // $result　からBIKOに該当するカラムのみを取り出す
 $biko = array_column($result, 'BIKO');
 // 取り出したカラムの配列を表示
 echo '備考　';
-print_r($biko);
+foreach($biko as $value){
+    echo $value;
+    echo '｜';
+}
 
 
 echo '<br><br>';

@@ -27,7 +27,11 @@ echo '<br>';
 $name = array_column($result, 'NAME');
 // 取り出したカラムの配列を表示
 echo '買ったもの　';
-print_r($name);
+
+foreach($name as $value){
+    echo $value;
+    echo '｜';
+}
 //改行
 echo '<br>';
 
@@ -35,7 +39,11 @@ echo '<br>';
 $buy_date = array_column($result, 'BUY_DATE');
 // 取り出したカラムの配列を表示
 echo '購入日　';
-print_r($buy_date);
+
+foreach($buy_date as $value){
+    echo $value;
+    echo '｜';
+}
 
 //改行
 echo '<br>';
@@ -44,14 +52,23 @@ echo '<br>';
 $kigen = array_column($result, 'KIGEN');
 // 取り出したカラムの配列を表示
 echo '期限　';
-print_r($kigen);
+
+foreach($kigen as $value){
+    echo $value;
+    echo '｜';
+}
+
 //改行
 echo '<br>';
 // $result　からPRICEに該当するカラムのみを取り出す
 $price = array_column($result, 'PRICE');
 // 取り出したカラムの配列を表示
 echo '価格　';
-print_r($price);
+
+foreach($price as $value){
+    echo $value;
+    echo '｜';
+}
 
 //改行
 echo '<br>';
@@ -59,14 +76,23 @@ echo '<br>';
 $number = array_column($result, 'NUMBER');
 // 取り出したカラムの配列を表示
 echo '個数　';
-print_r($number);
+
+foreach($number as $value){
+    echo $value;
+    echo '｜';
+}
+
 //改行
 echo '<br>';
 // $result　からBIKOに該当するカラムのみを取り出す
 $biko = array_column($result, 'BIKO');
 // 取り出したカラムの配列を表示
 echo '備考　';
-print_r($biko);
+
+foreach($biko as $value){
+    echo $value;
+    echo '｜';
+}
 
 echo '<br><br>';
 echo '<a href="index3.php">登録</a>';
